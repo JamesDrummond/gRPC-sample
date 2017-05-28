@@ -1,5 +1,5 @@
 //Need to remove this. Script generation always creates an extra script.
-rootProject.name = '.dont-use'
+rootProject.name = 'gRPC-Client-Server-Example'
 
 def grpcVersion = '1.3.0' // CURRENT_GRPC_VERSION
 
