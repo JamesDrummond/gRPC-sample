@@ -1,0 +1,8 @@
+//Need to remove this. Script generation always creates an extra script.
+rootProject.name = '.dont-use'
+
+def grpcVersion = '1.3.0' // CURRENT_GRPC_VERSION
+
+include "io.grpc:grpc-netty:${grpcVersion}"
+include "io.grpc:grpc-protobuf:${grpcVersion}"
+include "io.grpc:grpc-stub:${grpcVersion}"
