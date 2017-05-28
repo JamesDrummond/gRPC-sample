@@ -1,0 +1,107 @@
+{
+  "v": "4.0",
+  "name": "gRPC_sample",
+  "workspace": {
+    "defaultEnv": "wksp-grpc",
+    "environments": {
+      "wksp-grpc": {
+        "machines": {
+          "server": {
+            "attributes": {
+              "memoryLimitBytes": "1073741824"
+            },
+            "servers": {},
+            "agents": [
+              "org.eclipse.che.exec",
+              "org.eclipse.che.terminal",
+              "org.eclipse.che.ssh"
+            ]
+          },
+          "client": {
+            "attributes": {
+              "memoryLimitBytes": "2147483648"
+            },
+            "servers": {},
+            "agents": [
+              "org.eclipse.che.exec",
+              "org.eclipse.che.terminal",
+              "org.eclipse.che.ssh",
+              "org.eclipse.che.ws-agent"
+            ]
+          }
+        },
+        "recipe": {
+          "type": "compose",
+          "content": "services:\n  client:\n    image: eclipse/ubuntu_jdk8\n    mem_limit: 2147483648\n  server:\n    image: eclipse/ubuntu_jdk8\n    mem_limit: 1073741824\n    volumes_from:\n      - client\n",
+          "contentType": "application/x-yaml"
+        }
+      }
+    },
+    "projects": [
+      {
+        "links": [],
+        "name": "grpc-java",
+        "attributes": {
+          "java.library.folder": [
+            ""
+          ]
+        },
+        "type": "javac",
+        "source": {
+          "location": "https://github.com/grpc/grpc-java.git",
+          "type": "git",
+          "parameters": {
+            "branch": "master"
+          }
+        },
+        "path": "/grpc-java",
+        "problems": [],
+        "mixins": []
+      },
+      {
+        "links": [],
+        "name": "gRPC-sample",
+        "attributes": {
+          "commands": [
+            "{\"commandLine\":\"cd /projects/gRPC-sample/ && APP_CLASS_PATH=\\\"/projects/gRPC-sample/build/libs/\\\" ./build/scripts/hello-world-server\", \"name\":\"Gradle Run Server\", \"attributes\":{\"previewUrl\":\"\", \"goal\":\"Run\"}, \"type\":\"mvn\"}",
+            "{\"commandLine\":\"cd /projects/gRPC-sample/ && APP_CLASS_PATH=\\\"/projects/gRPC-sample/build/libs/\\\" ./build/scripts/hello-world-client\", \"name\":\"Gradle Run Client\", \"attributes\":{\"previewUrl\":\"\", \"goal\":\"Run\"}, \"type\":\"mvn\"}",
+            "{\"commandLine\":\"cd /projects/gRPC-sample/ && gradle -Dorg.gradle.daemon=true generatePomFileForMavenCustomPublication && gradle -Dorg.gradle.daemon=true clean build\", \"name\":\"Gradle Build Only\", \"attributes\":{\"previewUrl\":\"\", \"goal\":\"Run\"}, \"type\":\"mvn\"}",
+            "{\"commandLine\":\"cd /projects/gRPC-sample/ && gradle -Dorg.gradle.daemon=true generatePomFileForMavenCustomPublication && gradle -Dorg.gradle.daemon=true clean build && APP_CLASS_PATH=\\\"/projects/gRPC-sample/build/libs/\\\" ./scripts/hello-world-server\", \"name\":\"Gradle Build-Run Server\", \"attributes\":{\"previewUrl\":\"\", \"goal\":\"Run\"}, \"type\":\"mvn\"}",
+            "{\"commandLine\":\"cd /projects/gRPC-sample/ && gradle -Dorg.gradle.daemon=true generatePomFileForMavenCustomPublication && gradle -Dorg.gradle.daemon=true clean build && APP_CLASS_PATH=\\\"/projects/gRPC-sample/build/libs/\\\" ./scripts/hello-world-client\", \"name\":\"Gradle Build-Run Client\", \"attributes\":{\"previewUrl\":\"\", \"goal\":\"Run\"}, \"type\":\"mvn\"}"
+          ]
+        },
+        "type": "maven",
+        "source": {
+          "location": "https://github.com/JamesDrummond/gRPC-sample.git",
+          "type": "git",
+          "parameters": {}
+        },
+        "path": "/gRPC-sample",
+        "problems": [],
+        "mixins": []
+      }
+    ],
+    "name": "grpc-sample",
+    "commands": [],
+    "links": []
+  },
+  "id": "factorygnixqlukvlljan3u",
+  "ide": {
+    "onProjectsLoaded": {
+      "actions": [
+        {
+          "properties": {
+            "name": "Gradle Build Only"
+          },
+          "id": "runCommand"
+        },
+        {
+          "properties": {
+            "name": "Gradle Run Server"
+          },
+          "id": "runCommand"
+        }
+      ]
+    }
+  }
+}
