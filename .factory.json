@@ -6,6 +6,17 @@
     "environments": {
       "wksp-grpc": {
         "machines": {
+          "client": {
+            "attributes": {
+              "memoryLimitBytes": "1073741824"
+            },
+            "servers": {},
+            "agents": [
+              "org.eclipse.che.exec",
+              "org.eclipse.che.terminal",
+              "org.eclipse.che.ssh"
+            ]
+          },
           "server": {
             "attributes": {
               "memoryLimitBytes": "2147483648"
@@ -16,17 +27,6 @@
               "org.eclipse.che.terminal",
               "org.eclipse.che.ssh",
               "org.eclipse.che.ws-agent"
-            ]
-          },
-          "client": {
-            "attributes": {
-              "memoryLimitBytes": "1073741824"
-            },
-            "servers": {},
-            "agents": [
-              "org.eclipse.che.exec",
-              "org.eclipse.che.terminal",
-              "org.eclipse.che.ssh"
             ]
           }
         },
