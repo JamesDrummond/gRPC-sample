@@ -1,0 +1,13 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	logallrefupdates = true
+[remote "https-origin"]
+	url = https://github.com/JamesDrummond/gRPC-sample.git
+	fetch = +refs/heads/*:refs/remotes/https-origin/*
+[remote "ssh-origin"]
+	url = git@github.com:JamesDrummond/gRPC-sample.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "master"]
+	remote = ssh-origin
+	merge = refs/heads/master
