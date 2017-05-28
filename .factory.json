@@ -6,7 +6,7 @@
     "environments": {
       "wksp-grpc": {
         "machines": {
-          "server": {
+          "client": {
             "attributes": {
               "memoryLimitBytes": "1073741824"
             },
@@ -17,7 +17,7 @@
               "org.eclipse.che.ssh"
             ]
           },
-          "client": {
+          "server": {
             "attributes": {
               "memoryLimitBytes": "2147483648"
             },
@@ -32,7 +32,7 @@
         },
         "recipe": {
           "type": "compose",
-          "content": "services:\n  client:\n    image: eclipse/ubuntu_jdk8\n    mem_limit: 2147483648\n  server:\n    image: eclipse/ubuntu_jdk8\n    mem_limit: 1073741824\n    volumes_from:\n      - client\n",
+          "content": "services:\n  server:\n    image: eclipse/ubuntu_jdk8\n    mem_limit: 2147483648\n  client:\n    image: eclipse/ubuntu_jdk8\n    mem_limit: 1073741824\n    volumes_from:\n      - server\n",
           "contentType": "application/x-yaml"
         }
       }
